@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+
 }
 
 datasource db {
@@ -13,9 +14,11 @@ datasource db {
 model Info {
   id         String   @id @default(uuid())
   text       String
+  task_id    String
+  task_fk    Task     @relation(fields: [task_id], references: [id], onDelete: Cascade)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  Task       Task[]
+
 
   @@map("info")
 }
@@ -24,10 +27,9 @@ model Task {
   id         String   @id @default(uuid())
   title      String
   check      Boolean  @default(false)
-  info_Id    String?
-  info       Info?    @relation(fields: [info_Id], references: [id], onDelete: Cascade)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
   @@map("task")
+  Info Info[]
 }
