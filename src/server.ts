@@ -3,8 +3,8 @@ import express,{Request,Response,NextFunction} from "express";
 const app = express();
 import "express-async-errors";
 import {router} from "./routes";
-// import cors from "cors";
-// app.use(cors())
+import cors from "cors";
+app.use(cors())
 
 app.use(
     (err: Error, request: Request, response: Response, next: NextFunction) => {
