@@ -13,12 +13,26 @@ class CreateTaskController {
     const info = await prismaClient.info.create({
       data: { text: "",task_id:task.id },
     });
-    console.log("info");
-    console.log(info);
+
+
+const created = {
+  "id": task.id,
+  "title": task.title,
+  "completed": task.check,
+  "infoId":info.id
+}
+
+
+
     console.log("Task");
     console.log(task);
+    console.log("info");
+    console.log(info);
+    console.log("Created");
+    console.log(created);
+    
 
-    return response.json(task);
+    return response.json(created);
   }
 }
 export{CreateTaskController};
