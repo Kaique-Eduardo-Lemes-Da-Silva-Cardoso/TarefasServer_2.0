@@ -3,31 +3,37 @@ import { Request, Response } from "express";
 class CreateTaskController {
   async handle(request: Request, response: Response) {
     const { title } = request.body;
+    const user_id = request.user_id;
 
-    const task = await prismaClient.task.create({
+   
+    const newTask = await prismaClient.getData.create({
       data: {
-        title: title,
-      },
+        User:{connect:{id:user_id}},
+        Task: {
+          create: {
+            title: title,
+          },
+        },
+        Info:{create:{text:""}}
+      },include:{Task:true,Info:true},
     });
-    const info = await prismaClient.info.create({
-      data: { text: "", task_id: task.id },
-    });
+    
 
     const created = {
-      id: task.id,
-      title: task.title,
-      completed: task.check,
-      infoId: info.id,
+      id: newTask.Task?.id,
+      title: newTask.Task?.title,
+      completed: newTask.Task?.check,
+      infoId: newTask.Info?.id,
     };
 
-    console.log("Task");
-    console.log(task);
-    console.log("info");
-    console.log(info);
+    console.log("New Task");
+    console.log(newTask);
+   
     console.log("Created");
     console.log(created);
 
     return response.json(created);
+    
   }
 }
 export { CreateTaskController };
