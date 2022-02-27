@@ -49,11 +49,11 @@ model User {
 model GetData {
   id String @id @default(uuid())
 
-  Info       Info?    @relation(fields: [infoId], references: [id])
+  Info       Info?    @relation(fields: [infoId], references: [id],onDelete: Cascade)
   infoId     String?
-  Task       Task?    @relation(fields: [taskId], references: [id])
+  Task       Task?    @relation(fields: [taskId], references: [id],onDelete: Cascade)
   taskId     String?
-  User       User?    @relation(fields: [userId], references: [id])
+  User       User?    @relation(fields: [userId], references: [id],onDelete: Cascade)
   userId     String?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
