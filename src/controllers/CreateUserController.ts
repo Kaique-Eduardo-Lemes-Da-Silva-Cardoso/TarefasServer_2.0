@@ -21,9 +21,10 @@ class CreateUserController{
           }
          const passwordHash = await hash(password,8);
 
-        const user = prismaClient.user.create({
+        const user = await prismaClient.user.create({
             data:{name:name,password:passwordHash,admin:admin,email:email,}
         });
+       
         return response.json(user);
 
     }

@@ -1,3 +1,4 @@
+import { AlthenticateUserController } from "@controllers/AlthenticateUserController";
 import { CreateTaskController } from "@controllers/CreateTaskController";
 import { CreateUserController } from "@controllers/CreateUserController";
 import { DeleteOneTaskController } from "@controllers/DeleteOneTaskController";
@@ -15,6 +16,7 @@ const deleteOneTaskController = new DeleteOneTaskController();
 const updateInfoController = new UpdateInfoController();
 const getInfoTextController = new GetInfoTextController();
 const createUserController = new CreateUserController();
+const althenticateUserController = new AlthenticateUserController();
 router.post("/CreateTask",createTaskController.handle);
 router.post("/UpdateTask",updateTaskController.handle);
 router.get("/GetData",findAllTasksController.handle);
@@ -22,4 +24,5 @@ router.post("/InfoData",getInfoTextController.handle);
 router.post("/DeleteOneTask",deleteOneTaskController.handle);
 router.post("/UpdateInfo",updateInfoController.handle);
 router.post("/CreateUser", createUserController.handle);
+router.post("/Login",althenticateUserController.handle)
 export{router};
