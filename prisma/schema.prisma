@@ -30,6 +30,21 @@ model Task {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
+  Info    Info[]
+  User    User?   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user_id String?
   @@map("task")
-  Info Info[]
+}
+
+model User {
+  id         String   @id @default(uuid())
+  name       String
+  email      String
+  password   String
+  admin      Boolean
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  Task       Task[]
+
+  @@map("user")
 }

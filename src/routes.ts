@@ -1,4 +1,5 @@
 import { CreateTaskController } from "@controllers/CreateTaskController";
+import { CreateUserController } from "@controllers/CreateUserController";
 import { DeleteOneTaskController } from "@controllers/DeleteOneTaskController";
 import { FindAllTasksController } from "@controllers/FindAllTasksController";
 import { GetInfoTextController } from "@controllers/GetInfoTextController";
@@ -13,10 +14,12 @@ const findAllTasksController = new FindAllTasksController();
 const deleteOneTaskController = new DeleteOneTaskController();
 const updateInfoController = new UpdateInfoController();
 const getInfoTextController = new GetInfoTextController();
+const createUserController = new CreateUserController();
 router.post("/CreateTask",createTaskController.handle);
 router.post("/UpdateTask",updateTaskController.handle);
 router.get("/GetData",findAllTasksController.handle);
 router.post("/InfoData",getInfoTextController.handle);
 router.post("/DeleteOneTask",deleteOneTaskController.handle);
 router.post("/UpdateInfo",updateInfoController.handle);
+router.post("/CreateUser", createUserController.handle);
 export{router};
