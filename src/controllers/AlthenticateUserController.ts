@@ -9,6 +9,7 @@ class AlthenticateUserController {
     if (!user) {
       throw new Error("E-mail && password Incorrect");
     }
+  
     const passwordMath = await compare(password, user.password);
 
     if (!passwordMath) {
